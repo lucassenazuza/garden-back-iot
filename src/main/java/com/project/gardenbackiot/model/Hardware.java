@@ -1,18 +1,16 @@
 package com.project.gardenbackiot.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@Data
 @Table(name = "tb_hardware")
 public class Hardware {
 
@@ -24,8 +22,11 @@ public class Hardware {
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 
+    @OneToMany(mappedBy = "hardware", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private List<Sensor> sensor;
+
     @PrePersist
     protected void prePersist() {
-        this.createdDate =  LocalDateTime.now();
+        createdDate = LocalDateTime.now();
     }
 }
