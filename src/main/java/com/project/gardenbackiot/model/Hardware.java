@@ -25,6 +25,10 @@ public class Hardware {
     @OneToMany(mappedBy = "hardware", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Sensor> sensor;
 
+    @OneToOne
+    @JoinColumn(name = "hardware_type", referencedColumnName = "name_model")
+    private HardwareType hardwareType;
+
     @PrePersist
     protected void prePersist() {
         createdDate = LocalDateTime.now();

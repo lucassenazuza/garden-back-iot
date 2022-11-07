@@ -1,17 +1,20 @@
 package com.project.gardenbackiot.exceptions;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 @RestControllerAdvice
 public class RestControllerHandler {
 
-//    @ExceptionHandler({})
-//    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Não encontrado")
-//    public void handleNotFound(Exception ex) {
-//        log.error(ex.getMessage(), ex);
-//    }
+    @ExceptionHandler({})
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Bad Request")
+    public void handleNotFound(Exception ex) {
+        log.error(ex.getMessage(), ex);
+    }
 //
 //    @ExceptionHandler({ NoContentException.class })
 //    @ResponseStatus(value = HttpStatus.NO_CONTENT, reason = "Não há conteúdo para enviar para esta solicitação")
