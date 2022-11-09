@@ -1,10 +1,13 @@
 package com.project.gardenbackiot.model;
 
 
+import lombok.Builder;
+
 import javax.persistence.*;
 
-@Entity()
+@Entity
 @Table(name = "tb_hardware_type")
+@Builder
 public class HardwareType {
 
     @Id
