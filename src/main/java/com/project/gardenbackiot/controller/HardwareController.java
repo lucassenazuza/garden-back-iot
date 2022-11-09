@@ -34,5 +34,7 @@ public class HardwareController {
         hardwareService.createNewHardwareType(createHardwareTypeRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(GenericResponseDto.builder().message("Trype Created successfully").build());
     }
+    //TODO Criar GET para buscar hardware por nome
+    //TODO buscar HArdawares criado em um determinado periodo
 
 }
