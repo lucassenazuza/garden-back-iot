@@ -2,6 +2,7 @@ package com.project.gardenbackiot.model.request;
 
 
 import com.project.gardenbackiot.model.Sensor;
+import com.project.gardenbackiot.model.enums.MeasurementUnitEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -17,7 +18,7 @@ public class CreateHardwareRequestDto {
     @NotBlank
     private String name;
     @NotNull
-    private HashMap<String, List<String>> sensors;
+    private HashMap<String, MeasurementUnitEnum> sensors;
 
     private String hardwareType;
 }
