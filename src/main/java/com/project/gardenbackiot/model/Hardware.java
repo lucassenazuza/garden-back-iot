@@ -1,7 +1,9 @@
 package com.project.gardenbackiot.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
@@ -10,23 +12,26 @@ import java.util.List;
 
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Table(name = "tb_hardware")
 public class Hardware {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(name = "name")
-    private String name;
+    private Long id;
+
+    @Column(name = "nameHardware")
+    private String nameHardware;
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 
     @OneToMany(mappedBy = "hardware", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Sensor> sensor;
 
-    @OneToOne
-    @JoinColumn(name = "hardware_type", referencedColumnName = "name_model")
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn(name = "hardware_type_id")
     private HardwareType hardwareType;
 
     @PrePersist

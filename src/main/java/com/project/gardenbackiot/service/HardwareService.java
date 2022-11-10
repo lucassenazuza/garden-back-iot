@@ -44,7 +44,7 @@ public class HardwareService {
             sensors.add(Sensor.builder().sensorName(key).measurementUnit(value).build());
         });
 
-        Hardware hardware = Hardware.builder().name(createHardwareRequestDto.getName())
+        Hardware hardware = Hardware.builder().nameHardware(createHardwareRequestDto.getNameHardware())
                 .hardwareType(hardwareType)
                 .sensor(sensors)
                 .build();

@@ -16,7 +16,7 @@ public class CreateHardwareRequestDto {
 
     @NotNull(message = "name required")
     @NotBlank
-    private String name;
+    private String nameHardware;
     @NotNull
     private HashMap<String, MeasurementUnitEnum> sensors;
 
