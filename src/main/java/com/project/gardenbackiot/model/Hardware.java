@@ -31,7 +31,7 @@ public class Hardware {
     private List<Sensor> sensor;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn(name = "hardware_type_id")
+    @JoinColumn(referencedColumnName = "name_model")
     private HardwareType hardwareType;
 
     @PrePersist
