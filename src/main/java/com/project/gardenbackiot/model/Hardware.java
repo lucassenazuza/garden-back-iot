@@ -31,7 +31,7 @@ public class Hardware {
     private List<Sensor> sensor;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "name_model")
+    @JoinColumn(referencedColumnName = "name_model", name = "hardware_type")
     private HardwareType hardwareType;
 
     @PrePersist
@@ -39,3 +39,5 @@ public class Hardware {
         createdDate = LocalDateTime.now();
     }
 }
+
+
