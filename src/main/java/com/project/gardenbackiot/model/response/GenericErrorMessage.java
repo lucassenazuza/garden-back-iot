@@ -8,6 +8,6 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class GenericErrorMessage {
-    public LocalDateTime localDateTime;
+    public LocalDateTime time;
     public String message;
 }

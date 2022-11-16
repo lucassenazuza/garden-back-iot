@@ -28,7 +28,7 @@ public class RestControllerHandler {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(GenericErrorMessage.builder()
-                        .localDateTime(LocalDateTime.now())
+                        .time(LocalDateTime.now())
                         .message(ex.getMessage())
                         .build());
     }
