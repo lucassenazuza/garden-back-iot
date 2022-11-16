@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HardwareRepository extends JpaRepository<Hardware, Long> {
+    Hardware findByNameHardware(String nameHardware);
 }

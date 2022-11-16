@@ -1,9 +1,7 @@
 package com.project.gardenbackiot.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
@@ -14,7 +12,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Table(name = "tb_hardware")
 public class Hardware {
 
@@ -22,12 +21,13 @@ public class Hardware {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nameHardware")
+    @Column(name = "name_hardware", unique = true)
     private String nameHardware;
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 
-    @OneToMany(mappedBy = "hardware", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "hardware", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Sensor> sensor;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -39,5 +39,6 @@ public class Hardware {
         createdDate = LocalDateTime.now();
     }
 }
+
 
 

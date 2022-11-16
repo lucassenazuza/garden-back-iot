@@ -1,20 +1,20 @@
 package com.project.gardenbackiot.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_hardware_type")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
-public class HardwareType {
+public class HardwareType implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

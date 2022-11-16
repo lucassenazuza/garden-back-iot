@@ -41,13 +41,15 @@ public class HardwareController {
     @GetMapping(value = "hardware")
     public ResponseEntity<List<HardwareReponseDto>> listHardwaresByPeriod(@RequestParam(value = "initialDate") String initialDate,
                                                                           @RequestParam(value = "endDate") String endDate) {
-
-
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
+    @GetMapping(value = "/find/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<HardwareReponseDto> searchHardwareByName(@PathVariable("name") String nameHardware){
+        HardwareReponseDto hardwareReponseDto = hardwareService.searchHardwareByName(nameHardware);
+        return ResponseEntity.status(HttpStatus.OK).body(hardwareReponseDto);
+    }
 
-    //TODO Criar GET para buscar hardware por nome
-    //TODO buscar HArdawares criado em um determinado periodo
 
 }

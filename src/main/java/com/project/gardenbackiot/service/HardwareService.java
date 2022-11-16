@@ -1,11 +1,13 @@
 package com.project.gardenbackiot.service;
 
+import com.project.gardenbackiot.mapper.HardwareMapper;
 import com.project.gardenbackiot.model.Hardware;
 import com.project.gardenbackiot.model.HardwareType;
 import com.project.gardenbackiot.model.Sensor;
 import com.project.gardenbackiot.model.enums.MeasurementUnitEnum;
 import com.project.gardenbackiot.model.request.CreateHardwareRequestDto;
 import com.project.gardenbackiot.model.request.CreateHardwareTypeRequestDto;
+import com.project.gardenbackiot.model.response.HardwareReponseDto;
 import com.project.gardenbackiot.repository.HardwareRepository;
 import com.project.gardenbackiot.repository.HardwareTypeRepository;
 import com.project.gardenbackiot.repository.SensorRepository;
@@ -26,6 +28,7 @@ public class HardwareService {
     private final HardwareRepository hardwareRepository;
     private final HardwareTypeRepository hardwareTypeRepository;
     private final SensorRepository sensorRepository;
+    private final HardwareMapper hardwareMapper;
 
     public void createNewHardware(CreateHardwareRequestDto createHardwareRequestDto) {
         String hardwareTypeStr = Optional.of(createHardwareRequestDto.getHardwareType()).orElse(null);
@@ -49,11 +52,19 @@ public class HardwareService {
                 .sensor(sensors)
                 .build();
 
+        sensors.forEach(sensor -> sensor.setHardware(hardware));
+
         hardwareRepository.save(hardware);
     }
 
     public void createNewHardwareType(CreateHardwareTypeRequestDto createHardwareTypeRequestDto) {
         HardwareType hardwareType = HardwareType.builder().nameModel(createHardwareTypeRequestDto.getType()).build();
         hardwareTypeRepository.save(hardwareType);
+    }
+
+    public HardwareReponseDto searchHardwareByName(String nameHardware) {
+        Hardware hardware = hardwareRepository.findByNameHardware(nameHardware);
+        HardwareReponseDto hardwareReponseDto = hardwareMapper.of(hardware);
+        return hardwareReponseDto;
     }
 }
